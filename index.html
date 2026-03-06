@@ -263,6 +263,27 @@
         }
         .overview-highlight strong { color: var(--color-text); }
 
+        /* VIDEO WRAPPER */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem auto;
+            border: 1px solid rgba(0,217,255,0.2);
+            box-shadow: 0 0 40px rgba(0,217,255,0.15);
+        }
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: none;
+        }
+
         /* SECTION LAYOUT — image flush to edge, text fills remaining space */
         .full-section {
             padding-top: 8rem;
@@ -509,21 +530,29 @@
         </div>
     </section>
 
-    <!-- Examples & Highlights -->
+    <!-- ✅ CLASSROOM IMPACT — fixed section -->
     <section id="examples" class="full-section" style="background: var(--color-dark-secondary);">
         <div class="section-header">
             <h2 class="section-title">Classroom Impact</h2>
         </div>
         <div class="section-layout layout-img-left">
-            <div class="section-image">
-                <div class="placeholder-img">
-                    <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><ellipse cx="26" cy="34" rx="15" ry="4.5" stroke="#00d9ff" stroke-width="1.5" stroke-dasharray="4 2"/><rect x="20" y="20" width="12" height="8" rx="6" fill="rgba(0,217,255,0.12)" stroke="#00d9ff" stroke-width="1.5"/><path d="M26 10v10M17 26l-4 2M35 26l4 2" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/><circle cx="26" cy="8" r="2.5" fill="#d946ef"/></svg>
-                    <span>Meissner Effect</span>
+            <!-- VIDEO COLUMN (left) -->
+            <div class="section-image" style="display:flex; align-items:center; justify-content:center; padding: 2rem 5%;">
+                <div class="video-wrapper">
+                    <iframe
+                        id="quantum-video"
+                        src="https://www.youtube.com/embed/AWojYBhvfjM?start=96&end=102&cc_load_policy=0&enablejsapi=1&mute=1&loop=1&playlist=AWojYBhvfjM"
+                        title="Quantum Levitation Demo"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
+            <!-- TEXT COLUMN (right) -->
             <div class="content-box">
                 <h3>The Meissner Effect Demonstration</h3>
-                <p>The core demonstration is the Meissner Effect: the YBCO superconductor disc is cooled with liquid nitrogen, then placed above the neodymium magnetic track — where it levitates, rotating slowly and silently. This single visual moment encapsulates quantum mechanics in a way no textbook can. The teaching guide walks students through the "why" behind what they just witnessed, linking the experiment to real applications like MRI machines, maglev trains, and quantum computers.</p>
+                <p>The core demonstration is the Meissner Effect: the YBCO superconductor disc is cooled with liquid nitrogen, then placed above the neodymium magnetic track — where it levitates, rotating slowly and silently. This single visual moment encapsulates quantum mechanics in a way no textbook can.</p>
+                <p>The teaching guide walks students through the "why" behind what they just witnessed, linking the experiment to real applications like MRI machines, maglev trains, and quantum computers.</p>
                 <div class="overview-pills">
                     <span class="pill cyan">Meissner Effect demo</span>
                     <span class="pill cyan">Magnetic levitation</span>
@@ -557,19 +586,17 @@
                         <span class="pill" style="margin:0;">LN&#8322; storage</span>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.9rem;">
-                        <span style="color:var(--color-text);">Safety Equipment (gloves, goggles, tongs)</span>
+                        <span style="color:var(--color-text);">Safety Equipment (gloves, goggles)</span>
                         <span class="pill pink" style="margin:0;">Cryogenic-rated</span>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.9rem;">
                         <span style="color:var(--color-text);">Teaching Manual</span>
-                        <span class="pill cyan" style="margin:0;">Basic &#8594; Flux Pinning</span>
+                        <span class="pill cyan" style="margin:0;">Basic &#8594; Quantum Locking</span>
                     </div>
-                
                 </div>
-            
             </div>
             <div class="section-image">
-                <div class="placeholder-img">
+                <img src="Solution.png" style="width:100%; height:100%; object-fit:cover;">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="10" y="10" width="14" height="14" rx="2" stroke="#00d9ff" stroke-width="1.5"/><rect x="28" y="10" width="14" height="14" rx="2" stroke="#8b5cf6" stroke-width="1.5"/><rect x="10" y="28" width="14" height="14" rx="2" stroke="#d946ef" stroke-width="1.5"/><rect x="28" y="28" width="14" height="14" rx="2" stroke="#00d9ff" stroke-width="1.5"/></svg>
                     <span>Kit Contents</span>
                 </div>
@@ -591,7 +618,7 @@
             </div>
             <div class="content-box">
                 <h3>Redesigned for the real classroom</h3>
-                <p>Superconductivity demonstrations already exist — but only in elite research laboratories. The Quantum Edu Kit applies design thinking to subtract complexity, combine theory with hands-on practice, and reimagine delivery around the classroom teacher instead of the research technician.</p>
+                <p>Superconductivity demonstrations already exist — but only in elite research laboratories. The Quantum Edu Kit applies design thinking to subtract complexity, and combine theory with hands-on practice.</p>
                 <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.65rem;">
                     <div style="display:flex; gap:0.8rem; align-items:flex-start;">
                         <span style="font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:800; color:#e879f9; text-transform:uppercase; letter-spacing:1px; flex-shrink:0; padding-top:0.15rem;">Efficiency</span>
@@ -623,14 +650,11 @@
             <div class="content-box">
                 <h3>Brand Biography</h3>
                 <p>It started the moment I realized that hands-on demonstrations dramatically improve retention and understanding of abstract concepts. I was lying down, reading the Feynman Lectures on Physics, struggling to truly grasp what I was reading. When I discovered that quantum levitation — one of the most visually striking consequences of superconductivity — was theoretically achievable with accessible materials, the idea was immediate: a kit that makes these advanced topics tangible for any student, anywhere.</p>
-                <p style="margin-top:0.8rem;">What interested me most was not the superconductor itself, but the question: why does something this remarkable remain invisible to most students? The answer: cost, complexity, and a lack of well-designed kits; became the design brief for everything that followed.</p>    
-            </p>   My goal was simple: come up with something that can sit on a teacher's desk anywhere in the world, require no specialist knowledge to operate, and still make a student's jaw drop. The Quantum Edu Kit is that thing.</p>
-                </div>
+                <p style="margin-top:0.8rem;">What interested me most was not the superconductor itself, but the question: why does something this remarkable remain invisible to most students? The answer — cost, complexity, and a lack of well-designed kits — became the design brief for everything that followed.</p>
+                <p style="margin-top:0.8rem;">My goal was simple: come up with something that can sit on a teacher's desk anywhere in the world, require no specialist knowledge to operate, and still make a student's jaw drop. The Quantum Edu Kit is that thing.</p>
+            </div>
             <div class="section-image">
-                <div class="placeholder-img">
-                    <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="18" r="9" stroke="#00d9ff" stroke-width="1.5"/><path d="M10 44c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span>Brand Story</span>
-                </div>
+                <img src="Our_mission.png" alt="Our mission" style="width:100%; height:100%; object-fit:cover;">
             </div>
         </div>
     </section>
@@ -668,7 +692,7 @@
             <div class="reference-item">American Physical Society. "The Meissner Effect in Superconductors: Classroom Demonstrations." <em>APS Physics Education Research</em>, 2023, www.aps.org/education/demonstrations.</div>
             <div class="reference-item">United Nations. "Sustainable Development Goal 4: Quality Education." <em>UN SDGs</em>, 2023, sdgs.un.org/goals/goal4.</div>
             <div class="reference-item">National Science Foundation. "STEM Education: Hands-On Learning Outcomes." <em>NSF Research Report</em>, 2022, www.nsf.gov/stem-education-research.</div>
-            <div class="reference-item">Bardeen, J., Cooper, L.N., and Schrieffer, J.R. "Theory of Superconductivity." <em>Physical Review</em>, vol. 108, no. 5, 1957, pp. 1175&#8211;1204.</div>
+            <div class="reference-item">“Superconductor at -196°C, Quantum Levitation.” Youtube, uploaded by Magnetic Games, 2022, https://www.youtube.com/watch?v=AWojYBhvfjM.</div>
         </div>
     </section>
 
@@ -700,10 +724,13 @@
     </footer>
 
     <script>
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 100);
         });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -711,10 +738,30 @@
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
+
+        // Hero parallax
         window.addEventListener('scroll', () => {
             const heroBackground = document.querySelector('.hero-background');
             if (heroBackground) heroBackground.style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
         });
+
+        // ✅ Autoplay video when Classroom Impact section enters viewport
+        const videoIframe = document.getElementById('quantum-video');
+        const baseVideoSrc = 'https://www.youtube.com/embed/AWojYBhvfjM?start=96&end=102&cc_load_policy=0&enablejsapi=1&mute=1&loop=1&playlist=AWojYBhvfjM';
+
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add autoplay=1 to trigger playback
+                    videoIframe.src = baseVideoSrc + '&autoplay=1';
+                } else {
+                    // Remove autoplay so it pauses when out of view
+                    videoIframe.src = baseVideoSrc;
+                }
+            });
+        }, { threshold: 0.4 }); // fires when 40% of the iframe is visible
+
+        videoObserver.observe(videoIframe);
     </script>
 </body>
 </html>
