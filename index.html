@@ -53,11 +53,11 @@
         }
         .logo img { height: 65px; width: auto; }
 
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 1rem; list-style: none; flex-wrap: nowrap; }
         .nav-links a {
             color: var(--color-text); text-decoration: none;
-            font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
-            position: relative; transition: color 0.3s ease;
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.3px;
+            position: relative; transition: color 0.3s ease; white-space: nowrap;
         }
         .nav-links a::after {
             content: ''; position: absolute; bottom: -5px; left: 0;
@@ -379,15 +379,96 @@
         .footer-links a:hover { color: var(--color-primary); }
 
         @media (max-width: 960px) { .highlights-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) {
-            .nav-links { gap: 1.2rem; font-size: 0.8rem; }
+
+        /* =====================
+           TABLET (768px - 1024px)
+        ===================== */
+        @media (max-width: 1024px) {
+            nav { padding: 1rem 4%; }
+            .logo img { height: 48px; }
             .logo { font-size: 1.1rem; }
-            .hero { padding-left: 5%; }
-            .hero-content { padding: 0 1.5rem; }
-            .hero h1 { font-size: 2rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.65rem; }
+
+            .hero { padding-left: 6%; padding-bottom: 130px; }
+            .hero h1 { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: -1px; }
+
+            .section-layout { grid-template-columns: 1fr 1fr; }
+            .layout-img-right { grid-template-columns: 1fr 1fr; }
+            .section-image { min-height: 300px; }
+
+            .about-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+            .benefits-grid, .features-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        }
+
+        /* =====================
+           MOBILE (max 768px)
+        ===================== */
+        @media (max-width: 768px) {
+            /* NAV — hamburger style hidden links, just show logo */
+            nav { padding: 0.8rem 5%; flex-wrap: wrap; }
+            .nav-links { display: none; }
+            .logo img { height: 40px; }
+            .logo { font-size: 1rem; }
+
+            /* HERO */
+            .hero { padding-left: 5%; padding-right: 5%; padding-bottom: 160px; align-items: flex-start; padding-top: 7rem; }
+            .hero-content { padding: 0; }
+            .hero h1 { font-size: clamp(2rem, 10vw, 3rem); letter-spacing: -1px; }
             .hero p { font-size: 0.95rem; }
-            .about-grid, .benefits-grid, .features-grid { grid-template-columns: 1fr; }
-            section { padding: 5rem 5%; }
+            .cta-button { padding: 1rem 2rem; font-size: 1rem; }
+
+            /* Hero bottom strip — stack vertically on mobile */
+            .hero-bottom-strip { grid-template-columns: 1fr !important; }
+
+            /* SECTIONS */
+            section { padding: 4rem 5%; }
+            .section-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+            .section-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+
+            /* ABOUT GRID */
+            .about-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+            .about-card { padding: 2rem 1.5rem 1.5rem; }
+            .about-card h3 { font-size: 1.4rem; }
+            .about-image { max-width: 100%; }
+
+            /* BENEFITS / FEATURES */
+            .benefits-grid, .features-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+
+            /* FULL SECTIONS — stack image below text on mobile */
+            .full-section { padding-top: 4rem; padding-bottom: 4rem; }
+            .full-section .section-header { padding: 0 5%; margin-bottom: 2rem; }
+            .section-layout,
+            .layout-img-right { grid-template-columns: 1fr !important; }
+            .layout-img-left .section-image,
+            .layout-img-right .section-image { display: block; min-height: 220px; order: 1; }
+            .layout-img-left .content-box,
+            .layout-img-right .content-box { order: 2; padding: 2rem 5%; }
+
+            /* VIDEO */
+            .video-wrapper { max-width: 100%; margin: 1rem 0; }
+
+            /* REFERENCES GRID */
+            .references-list { padding: 0; }
+            div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+            /* CONTACT */
+            .contact-info { gap: 1rem; }
+
+            /* FOOTER */
+            .footer-links { flex-wrap: wrap; gap: 1rem; justify-content: center; }
+            footer { padding: 3rem 5%; }
+        }
+
+        /* =====================
+           SMALL MOBILE (max 480px)
+        ===================== */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding-bottom: 200px; }
+            .section-title { font-size: 1.8rem; }
+            .about-card h3 { font-size: 1.2rem; }
+            .pill { font-size: 0.68rem; padding: 0.2rem 0.65rem; }
         }
     </style>
 </head>
@@ -407,6 +488,7 @@
             <li><a href="#products">The Kit</a></li>
             <li><a href="#innovation">What's new</a></li>
             <li><a href="#about-us">Our Mission</a></li>
+            <li><a href="#sdg">UN SDG 4</a></li>
             <li><a href="#references">References</a></li>
             <li><a href="#contact">Get in Touch</a></li>
         </ul>
@@ -419,13 +501,21 @@
         <div class="hero-content">
             <h1>Superconductivity<br><span class="gradient-text">Made Tangible</span></h1>
             <p>From memorizing formulas, to truly grasping quantum phenomena that most students never see</p>
+
+            <!-- Project Summary -->
+            <p style="font-size:clamp(0.85rem,1.5vw,1rem); color:var(--color-text-dim); max-width:600px; margin:0 0 2.5rem 0; font-weight:300; line-height:1.75; animation: fadeInUp 1s ease-out 0.5s backwards;">
+                The Quantum Edu Kit is an all-in-one superconductivity teaching kit — combining a YBCO superconductor disc, a snap-together neodymium magnetic track, liquid nitrogen, and a multilingual teaching guide — designed to bring hands-on quantum physics demonstrations to any classroom in the world, for under $500.
+            </p>
+
             <a href="#about" class="cta-button">Discover More</a>
         </div>
+
     </section>
 
     <!-- About -->
     <section class="about" id="about">
         <h2 class="section-title">Reimagining Science Education</h2>
+        <p class="section-subtitle">The gap between what students read and what they experience.</p>
         <div class="about-grid">
             <div class="about-card">
                 <h3>The Problem We Want To Address</h3>
@@ -439,13 +529,6 @@
                 <img src="Solution.png" alt="Solution illustration" class="about-image">
                 <div class="about-text">
                     <p>An affordable, modular superconductivity teaching kit using a YBCO superconductor, a snap-together neodymium magnetic track, liquid nitrogen, and a document with the information, which enable safe, repeatable, hands-on demonstrations of advanced quantum concepts while reducing cost, setup time, and teacher expertise.</p>
-                </div>
-            </div>
-            <div class="about-card">
-                <h3>United Nations Sustainable Development Goal</h3>
-                <img src="Quality_education.png" alt="UN SDG Quality Education illustration" class="about-image">
-                <div class="about-text">
-                    <p>Most schools around the world can't afford the equipment or expertise needed to teach advanced physics hands-on — meaning millions of students never get to experience concepts like superconductivity. This directly conflicts with UN SDG 4: Quality Education, Sub-target 4.4, which aims to give all young people access to technical and scientific skills. The Quantum Edu Kit fixes this by providing an affordable, easy-to-use kit that any teacher can use, bringing real demonstrations into classrooms that would otherwise never have had access to them.</p>
                 </div>
             </div>
         </div>
@@ -534,6 +617,7 @@
     <section id="examples" class="full-section" style="background: var(--color-dark-secondary);">
         <div class="section-header">
             <h2 class="section-title">Classroom Impact</h2>
+            <p class="section-subtitle">See quantum levitation in action — the moment everything clicks.</p>
         </div>
         <div class="section-layout layout-img-left">
             <!-- VIDEO COLUMN (left) -->
@@ -567,6 +651,7 @@
     <section id="products" class="full-section" style="background: var(--color-dark);">
         <div class="section-header">
             <h2 class="section-title">The Kit</h2>
+            <p class="section-subtitle">Everything you need, nothing you don't — in one box.</p>
         </div>
         <div class="section-layout layout-img-right">
             <div class="content-box">
@@ -586,20 +671,17 @@
                         <span class="pill" style="margin:0;">LN&#8322; storage</span>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.9rem;">
-                        <span style="color:var(--color-text);">Safety Equipment (gloves, goggles)</span>
+                        <span style="color:var(--color-text);">Safety Equipment (gloves, goggles, tongs)</span>
                         <span class="pill pink" style="margin:0;">Cryogenic-rated</span>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.9rem;">
                         <span style="color:var(--color-text);">Teaching Manual</span>
-                        <span class="pill cyan" style="margin:0;">Basic &#8594; Quantum Locking</span>
+                        <span class="pill cyan" style="margin:0;">Basic &#8594; Flux Pinning</span>
                     </div>
                 </div>
             </div>
             <div class="section-image">
-                <img src="Solution.png" style="width:100%; height:100%; object-fit:cover;">
-                    <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="10" y="10" width="14" height="14" rx="2" stroke="#00d9ff" stroke-width="1.5"/><rect x="28" y="10" width="14" height="14" rx="2" stroke="#8b5cf6" stroke-width="1.5"/><rect x="10" y="28" width="14" height="14" rx="2" stroke="#d946ef" stroke-width="1.5"/><rect x="28" y="28" width="14" height="14" rx="2" stroke="#00d9ff" stroke-width="1.5"/></svg>
-                    <span>Kit Contents</span>
-                </div>
+                <img src="Solution.png" alt="Kit contents" style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
         </div>
     </section>
@@ -608,6 +690,7 @@
     <section id="innovation" class="full-section" style="background: var(--color-dark-secondary);">
         <div class="section-header">
             <h2 class="section-title">What's New</h2>
+            <p class="section-subtitle">How the Quantum Edu Kit solves what existing solutions couldn't.</p>
         </div>
         <div class="section-layout layout-img-left">
             <div class="section-image">
@@ -645,6 +728,7 @@
     <section id="about-us" class="full-section" style="background: var(--color-dark);">
         <div class="section-header">
             <h2 class="section-title">Our Mission</h2>
+            <p class="section-subtitle">Why this kit exists, and the story behind it.</p>
         </div>
         <div class="section-layout layout-img-right">
             <div class="content-box">
@@ -659,40 +743,65 @@
         </div>
     </section>
 
+    <!-- UN SDG Section -->
+    <section id="sdg" class="full-section" style="background: var(--color-dark);">
+        <div class="section-header">
+            <h2 class="section-title">United Nations Sustainable Development Goal</h2>
+            <p class="section-subtitle" style="margin-bottom:0;">How the Quantum Edu Kit contributes to a global mission.</p>
+        </div>
+        <div class="section-layout layout-img-right">
+            <div class="content-box">
+                <h3>UN SDG 4 — Quality Education</h3>
+                <p>Most schools around the world can't afford the equipment or expertise needed to teach advanced physics hands-on — meaning millions of students never get to experience concepts like superconductivity. This directly conflicts with <strong>UN SDG 4: Quality Education, Sub-target 4.4</strong>, which aims to give all young people access to technical and scientific skills.</p>
+                <p style="margin-top:0.8rem;">The Quantum Edu Kit advances this goal directly: cost drops from ~$5,000 to under $500, no specialist knowledge is required to operate it, and any teacher anywhere in the world can deliver a superconductivity demonstration that rivals what's available in elite research institutions.</p>
+                <div class="overview-pills" style="margin-top:1.2rem;">
+                    <span class="pill cyan">SDG 4: Quality Education</span>
+                    <span class="pill">Sub-target 4.4</span>
+                    <span class="pill pink">Technical & Scientific Skills</span>
+                    <span class="pill">Global Accessibility</span>
+                </div>
+                <div class="overview-highlight" style="margin-top:1.2rem;">
+                    <strong>Beyond donation:</strong> Rather than simply funding schools, the kit creates a repeatable, scalable infrastructure for hands-on STEM education that persists and compounds over time.
+                </div>
+            </div>
+            <div class="section-image">
+                <img src="Quality_education.png" alt="UN SDG 4 Quality Education" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+        </div>
+    </section>
+
     <!-- References -->
     <section class="references" id="references">
         <h2 class="section-title">References &amp; Sources</h2>
         <p class="section-subtitle">Research backing our educational approach</p>
-        <section style="background: var(--color-dark-secondary); padding: 2rem 5% 6rem;">
-            <div style="max-width:900px;">
-                <div style="font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#e879f9; margin-bottom:1rem;">Evaluation of Research Process &amp; Results</div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-                    <div style="background:rgba(139,92,246,0.07); border:1px solid rgba(139,92,246,0.2); border-radius:12px; padding:1.4rem;">
-                        <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:#c4b5fd; margin-bottom:0.5rem;">What the Research Confirmed</div>
-                        <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">All three primary sources — the student survey, UCR interview, and expert interview — independently confirmed the same core finding: financial cost and teacher expertise are the two main barriers blocking hands-on superconductivity education. This convergence across varied sources strengthens the validity of the problem statement and the design choices that followed.</p>
-                    </div>
-                    <div style="background:rgba(0,217,255,0.05); border:1px solid rgba(0,217,255,0.15); border-radius:12px; padding:1.4rem;">
-                        <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:var(--color-primary); margin-bottom:0.5rem;">How It Shaped the Design</div>
-                        <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">The expert interview directly influenced the kit's scope: step-by-step assembly instructions were added to the manual after the professor noted that teachers without prior laboratory experience would not know how to independently configure the equipment. The peer feedback led to revising the solution description to explain <em>how</em> the kit improves understanding, not just that it does.</p>
-                    </div>
-                    <div style="background:rgba(217,70,239,0.06); border:1px solid rgba(217,70,239,0.15); border-radius:12px; padding:1.4rem;">
-                        <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:#e879f9; margin-bottom:0.5rem;">Limitations</div>
-                        <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">The student survey had only 11 respondents, all from the same school, which limits how broadly the results can be applied. A larger sample across multiple institutions — particularly in developing nations — would produce more reliable data. The interviews also relied on self-reported opinion rather than controlled observation.</p>
-                    </div>
-                    <div style="background:rgba(139,92,246,0.07); border:1px solid rgba(139,92,246,0.2); border-radius:12px; padding:1.4rem;">
-                        <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:#c4b5fd; margin-bottom:0.5rem;">Next Steps</div>
-                        <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">Future research should test a working prototype with actual students and measure retention against a control group taught only with theory. Gathering feedback from teachers in Costa Rica and other Central American countries would give data that is directly relevant to the target audience.</p>
-                    </div>
+        <div style="margin-bottom:3rem;">
+            <div style="font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#e879f9; margin-bottom:1rem;">Evaluation of Research Process &amp; Results</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+                <div style="background:rgba(139,92,246,0.07); border:1px solid rgba(139,92,246,0.2); border-radius:12px; padding:1.4rem;">
+                    <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:#c4b5fd; margin-bottom:0.5rem;">What the Research Confirmed</div>
+                    <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">All three primary sources — the student survey, UCR interview, and expert interview — independently confirmed the same core finding: financial cost and teacher expertise are the two main barriers blocking hands-on superconductivity education. This convergence across varied sources strengthens the validity of the problem statement and the design choices that followed.</p>
+                </div>
+                <div style="background:rgba(0,217,255,0.05); border:1px solid rgba(0,217,255,0.15); border-radius:12px; padding:1.4rem;">
+                    <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:var(--color-primary); margin-bottom:0.5rem;">How It Shaped the Design</div>
+                    <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">The expert interview directly influenced the kit's scope: step-by-step assembly instructions were added to the manual after the professor noted that teachers without prior laboratory experience would not know how to independently configure the equipment. The peer feedback led to revising the solution description to explain <em>how</em> the kit improves understanding, not just that it does.</p>
+                </div>
+                <div style="background:rgba(217,70,239,0.06); border:1px solid rgba(217,70,239,0.15); border-radius:12px; padding:1.4rem;">
+                    <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:#e879f9; margin-bottom:0.5rem;">Limitations</div>
+                    <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">The student survey had only 11 respondents, all from the same school, which limits how broadly the results can be applied. A larger sample across multiple institutions — particularly in developing nations — would produce more reliable data. The interviews also relied on self-reported opinion rather than controlled observation.</p>
+                </div>
+                <div style="background:rgba(139,92,246,0.07); border:1px solid rgba(139,92,246,0.2); border-radius:12px; padding:1.4rem;">
+                    <div style="font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:700; color:#c4b5fd; margin-bottom:0.5rem;">Next Steps</div>
+                    <p style="color:var(--color-text-dim); font-size:0.88rem; line-height:1.75;">Future research should test a working prototype with actual students and measure retention against a control group taught only with theory. Gathering feedback from teachers in Costa Rica and other Central American countries would give data that is directly relevant to the target audience.</p>
                 </div>
             </div>
-        </section>
+        </div>
         <div class="references-list">
             <div class="reference-item">Freeman, S., et al. "Active learning increases student performance in science, engineering, and mathematics." <em>Proceedings of the National Academy of Sciences</em>, vol. 111, no. 23, 2014, pp. 8410&#8211;8415.</div>
             <div class="reference-item">Prince, Michael. "Does Active Learning Work? A Review of the Research." <em>Journal of Engineering Education</em>, vol. 93, no. 3, 2004, pp. 223&#8211;231.</div>
             <div class="reference-item">American Physical Society. "The Meissner Effect in Superconductors: Classroom Demonstrations." <em>APS Physics Education Research</em>, 2023, www.aps.org/education/demonstrations.</div>
             <div class="reference-item">United Nations. "Sustainable Development Goal 4: Quality Education." <em>UN SDGs</em>, 2023, sdgs.un.org/goals/goal4.</div>
             <div class="reference-item">National Science Foundation. "STEM Education: Hands-On Learning Outcomes." <em>NSF Research Report</em>, 2022, www.nsf.gov/stem-education-research.</div>
-            <div class="reference-item">“Superconductor at -196°C, Quantum Levitation.” Youtube, uploaded by Magnetic Games, 2022, https://www.youtube.com/watch?v=AWojYBhvfjM.</div>
+            <div class="reference-item">Bardeen, J., Cooper, L.N., and Schrieffer, J.R. "Theory of Superconductivity." <em>Physical Review</em>, vol. 108, no. 5, 1957, pp. 1175&#8211;1204.</div>
         </div>
     </section>
 
@@ -702,7 +811,7 @@
         <p class="section-subtitle">Let's bring quantum physics to your classroom</p>
         <div class="contact-content">
             <div class="contact-info">
-                <div class="contact-item"><h3>&#128231; Email</h3><p>quantumedulab@gmail.com</p></div>
+                <div class="contact-item"><h3>&#128231; Email</h3><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5d4d0c4cbd1d0c8c0c1d0c9c4c7e5c2c8c4ccc98bc6cac8">[email&#160;protected]</a></p></div>
                 <div class="contact-item"><h3>&#127760; Support</h3><p>Visit our educator portal for resources and community forums</p></div>
                 <div class="contact-item"><h3>&#128205; Global Reach</h3><p>Serving 500+ schools across 25 countries worldwide</p></div>
             </div>
@@ -723,7 +832,7 @@
         <p style="font-size: 0.9rem;">Supporting UN SDG 4: Quality Education for All</p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
@@ -752,14 +861,12 @@
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add autoplay=1 to trigger playback
                     videoIframe.src = baseVideoSrc + '&autoplay=1';
                 } else {
-                    // Remove autoplay so it pauses when out of view
                     videoIframe.src = baseVideoSrc;
                 }
             });
-        }, { threshold: 0.4 }); // fires when 40% of the iframe is visible
+        }, { threshold: 0.4 });
 
         videoObserver.observe(videoIframe);
     </script>
