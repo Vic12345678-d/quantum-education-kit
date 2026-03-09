@@ -188,6 +188,18 @@
             .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
         }
 
+        html { scroll-behavior: smooth; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* SHARED */
         section { padding: 8rem 5%; position: relative; }
         .section-title {
@@ -711,9 +723,9 @@
 
     <!-- About -->
     <section class="about" id="about">
-        <h2 class="section-title">Reimagining Science Education</h2>
-        <p class="section-subtitle">The gap between what students read and what they experience.</p>
-        <div class="about-grid">
+        <h2 class="section-title reveal">Reimagining Science Education</h2>
+        <p class="section-subtitle reveal">The gap between what students read and what they experience.</p>
+        <div class="about-grid reveal">
             <div class="about-card">
                 <h3>The Problem We Want To Address</h3>
                 <img src="The_problem.png" alt="The problem illustration" class="about-image">
@@ -733,9 +745,9 @@
 
     <!-- Benefits -->
     <section class="benefits" id="benefits">
-        <h2 class="section-title">The Classroom Advantage</h2>
-        <p class="section-subtitle">What students and educators gain from every kit.</p>
-        <div class="benefits-grid">
+        <h2 class="section-title reveal">The Classroom Advantage</h2>
+        <p class="section-subtitle reveal">What students and educators gain from every kit.</p>
+        <div class="benefits-grid reveal">
             <div class="benefit-card">
                 <img src="Hands_on_experimentation.png" alt="Hands-On Experimentation" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
                 <div class="card-body">
@@ -776,9 +788,9 @@
 
     <!-- Features -->
     <section class="features" id="features">
-        <h2 class="section-title">Built for Discovery</h2>
-        <p class="section-subtitle">Everything inside the kit, built for reliability.</p>
-        <div class="features-grid">
+        <h2 class="section-title reveal">Built for Discovery</h2>
+        <p class="section-subtitle reveal">Everything inside the kit, built for reliability.</p>
+        <div class="features-grid reveal">
             <div class="feature-card">
                 <img src="YBCO_Disk.png" alt="YBCO Superconductor Disc" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
                 <div class="card-body">
@@ -1101,6 +1113,17 @@
             const heroBackground = document.querySelector('.hero-background');
             if (heroBackground) heroBackground.style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
         });
+
+        // Scroll reveal
+        function reveal() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', reveal, { passive: true });
+        reveal(); // run on load for elements already in view
 
         // ✅ Autoplay video when Classroom Impact section enters viewport
         const videoIframe = document.getElementById('quantum-video');
