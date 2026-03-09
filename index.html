@@ -27,9 +27,8 @@
             line-height: 1.6;
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--color-dark-secondary); }
-        ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 4px; }
+        ::-webkit-scrollbar { display: none; }
+        * { scrollbar-width: none; }
 
         nav {
             position: fixed; top: 0; width: 100%;
@@ -69,66 +68,125 @@
         /* HERO */
         .hero {
             min-height: 100vh; position: relative;
-            display: flex; align-items: center; justify-content: flex-start;
-            overflow: hidden; padding-left: 10%;
+            display: flex; align-items: center;
+            overflow: hidden;
+            padding: 14rem 7% 10rem;
         }
         .hero-background {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background:
-                radial-gradient(circle at 20% 50%, rgba(139,92,246,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0,217,255,0.15) 0%, transparent 50%),
-                linear-gradient(180deg, var(--color-dark) 0%, var(--color-dark-secondary) 100%);
+                radial-gradient(ellipse 60% 50% at 80% 40%, rgba(0,217,255,0.13) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 90% 10%, rgba(139,92,246,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 10% 80%, rgba(217,70,239,0.08) 0%, transparent 60%),
+                linear-gradient(170deg, #0a0a14 0%, #080810 60%, #0d0818 100%);
             z-index: 0;
         }
-        .hero-grid {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image:
-                linear-gradient(rgba(0,217,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,217,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px; opacity: 0.5;
-            animation: gridMove 20s linear infinite;
-        }
-        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+        .hero-grid { display: none; }
+        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
 
         .hero-content {
-            position: relative; z-index: 2; width: 100%; max-width: 1000px;
-            padding: 0 2rem; animation: fadeInUp 1s ease-out;
+            position: relative; z-index: 2; width: 100%;
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .hero-eyebrow {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            opacity: 0.7;
+            margin-bottom: 1.8rem;
+            animation: fadeInUp 0.8s ease-out 0.1s backwards;
+        }
+
         .hero h1 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(2.5rem, 7vw, 5.5rem);
-            font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem;
-            letter-spacing: -2px; animation: fadeInUp 1s ease-out 0.2s backwards; text-align: left;
+            font-size: clamp(2.5rem, 6vw, 7rem);
+            font-weight: 800;
+            line-height: 0.95;
+            margin: 0 0 0.08em;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.9s ease-out 0.2s backwards;
+            white-space: nowrap;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent-bright) 100%);
+        .hero h1 .line-1 { color: #fff; display: block; }
+        .hero h1 .line-2 {
+            display: block;
+            background: linear-gradient(100deg, var(--color-primary) 0%, var(--color-accent-bright) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-dim);
-            max-width: 650px; margin: 0 0 2.5rem 0; font-weight: 300; line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.4s backwards; text-align: left;
+
+        .hero-divider {
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, rgba(0,217,255,0.4), rgba(139,92,246,0.2), transparent);
+            margin: 2.5rem 0;
+            animation: fadeIn 1s ease-out 0.5s backwards;
         }
+
+        .hero-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            animation: fadeInUp 0.9s ease-out 0.6s backwards;
+        }
+        .hero-desc {
+            max-width: 520px;
+        }
+        .hero-desc p {
+            font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+            color: rgba(255,255,255,0.45);
+            font-weight: 300;
+            line-height: 1.75;
+            margin: 0;
+        }
+        .hero-desc p + p { margin-top: 0.75rem; }
+
         .cta-button {
-            display: inline-block; padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-            color: var(--color-text); text-decoration: none;
-            font-weight: 600; font-size: 1.1rem; letter-spacing: 0.5px;
-            border-radius: 50px; position: relative; overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.6s backwards;
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 1rem 2.4rem;
+            background: transparent;
+            border: 1px solid rgba(0,217,255,0.5);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500; font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            position: relative; overflow: hidden;
+            transition: all 0.4s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .cta-button::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
+            content: ''; position: absolute; inset: 0;
+            background: var(--color-primary);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
         }
-        .cta-button:hover::before { left: 100%; }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,217,255,0.4); }
+        .cta-button span { position: relative; z-index: 1; }
+        .cta-button:hover::before { transform: translateX(0); }
+        .cta-button:hover { color: #000; border-color: var(--color-primary); }
+
+        @media (max-width: 1024px) {
+            .hero { padding: 0 6% 7vh; }
+            .hero h1 { font-size: clamp(2rem, 8vw, 5rem); }
+        }
+        @media (max-width: 768px) {
+            .hero { align-items: flex-start; padding: 9rem 6% 4rem; }
+            .hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); white-space: normal; }
+            .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
+        }
 
         /* SHARED */
         section { padding: 8rem 5%; position: relative; }
@@ -374,7 +432,7 @@
             border-top: 1px solid rgba(0,217,255,0.1);
         }
         footer p { color: var(--color-text-dim); margin-bottom: 2rem; }
-        .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 2rem; }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2rem; list-style: none; margin-bottom: 2rem; }
         .footer-links a { color: var(--color-text-dim); text-decoration: none; transition: color 0.3s ease; }
         .footer-links a:hover { color: var(--color-primary); }
 
@@ -390,8 +448,8 @@
             .nav-links { gap: 0.6rem; }
             .nav-links a { font-size: 0.65rem; }
 
-            .hero { padding-left: 6%; padding-bottom: 130px; }
-            .hero h1 { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: -1px; }
+            .hero { padding-left: 6%; }
+            .hero h1 { font-size: clamp(2rem, 8vw, 5rem); }
 
             .section-layout { grid-template-columns: 1fr 1fr; }
             .layout-img-right { grid-template-columns: 1fr 1fr; }
@@ -412,11 +470,11 @@
             .logo { font-size: 1rem; }
 
             /* HERO */
-            .hero { padding-left: 5%; padding-right: 5%; padding-bottom: 160px; align-items: flex-start; padding-top: 7rem; }
+            .hero { padding: 9rem 6% 4rem; align-items: flex-start; }
             .hero-content { padding: 0; }
-            .hero h1 { font-size: clamp(2rem, 10vw, 3rem); letter-spacing: -1px; }
-            .hero p { font-size: 0.95rem; }
-            .cta-button { padding: 1rem 2rem; font-size: 1rem; }
+            .hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); white-space: normal; }
+            .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            .cta-button { padding: 0.9rem 2rem; font-size: 0.8rem; }
 
             /* Hero bottom strip — stack vertically on mobile */
             .hero-bottom-strip { grid-template-columns: 1fr !important; }
@@ -464,8 +522,8 @@
            SMALL MOBILE (max 480px)
         ===================== */
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
-            .hero { padding-bottom: 200px; }
+            .hero h1 { font-size: clamp(1.8rem, 11vw, 2.5rem); }
+            .hero { padding: 8rem 5% 3rem; }
             .section-title { font-size: 1.8rem; }
             .about-card h3 { font-size: 1.2rem; }
             .pill { font-size: 0.68rem; padding: 0.2rem 0.65rem; }
@@ -473,6 +531,77 @@
     </style>
 </head>
 <body>
+
+    <!-- ── PAGE INTRO OVERLAY ── -->
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <span class="intro-word-1">QUANTUM</span>
+            <span class="intro-word-2">EDU KIT</span>
+        </div>
+    </div>
+
+    <style>
+    #intro-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .intro-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    .intro-word-1 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: clamp(3rem, 8vw, 7rem);
+        letter-spacing: 0.25em;
+        color: #fff;
+        opacity: 0;
+        animation: introFadeIn 1.5s ease forwards 0.3s;
+    }
+    .intro-word-2 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.5rem, 4vw, 3.5rem);
+        letter-spacing: 0.5em;
+        background: linear-gradient(135deg, #00d9ff, #d946ef);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0;
+        animation: introFadeIn 1.5s ease forwards 1s;
+    }
+    @keyframes introFadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    /* Brighten phase */
+    #intro-overlay.brighten {
+        animation: introBrighten 2.2s ease-in-out forwards;
+        pointer-events: none;
+    }
+    @keyframes introBrighten {
+        0%   { opacity: 1; }
+        30%  { opacity: 0.95; }
+        100% { opacity: 0; }
+    }
+    #intro-overlay.gone { display: none; }
+    </style>
+
+    <script>
+    (function() {
+        const overlay = document.getElementById('intro-overlay');
+        // Always play on every page load
+        setTimeout(() => overlay.classList.add('brighten'), 3000);
+        setTimeout(() => overlay.classList.add('gone'), 5200);
+    })();
+    </script>
 
     <!-- Navigation -->
     <nav id="navbar">
@@ -497,18 +626,86 @@
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-background"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-content">
-            <h1>Superconductivity<br><span class="gradient-text">Made Tangible</span></h1>
-            <p>From memorizing formulas, to truly grasping quantum phenomena that most students never see</p>
 
-            <!-- Project Summary -->
-            <p style="font-size:clamp(0.85rem,1.5vw,1rem); color:var(--color-text-dim); max-width:600px; margin:0 0 2.5rem 0; font-weight:300; line-height:1.75; animation: fadeInUp 1s ease-out 0.5s backwards;">
-                An all-in-one superconductivity teaching kit — YBCO disc, magnetic track, liquid nitrogen, and teaching guide — for any classroom in the world, for under $500.
-            </p>
-
-            <a href="#about" class="cta-button">Discover More</a>
+        <!-- Decorative orbs on the right -->
+        <div class="hero-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="orb-ring orb-ring-1"></div>
+            <div class="orb-ring orb-ring-2"></div>
         </div>
+
+        <style>
+        .hero-orbs {
+            position: absolute;
+            right: 0; top: 0;
+            width: 55%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+        .orb-1 {
+            width: 340px; height: 340px;
+            background: radial-gradient(circle, rgba(0,217,255,0.22) 0%, transparent 70%);
+            top: 20%; left: 35%;
+            animation: orbFloat1 8s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(139,92,246,0.28) 0%, transparent 70%);
+            top: 10%; left: 60%;
+            animation: orbFloat2 11s ease-in-out infinite;
+        }
+        .orb-3 {
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(217,70,239,0.18) 0%, transparent 70%);
+            top: 60%; left: 55%;
+            animation: orbFloat3 9s ease-in-out infinite;
+        }
+        .orb-ring { display: none; }
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0, 0); }
+            33%       { transform: translate(-30px, -25px); }
+            66%       { transform: translate(20px, 15px); }
+        }
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0, 0); }
+            50%       { transform: translate(-20px, 30px); }
+        }
+        @keyframes orbFloat3 {
+            0%, 100% { transform: translate(0, 0); }
+            40%       { transform: translate(25px, -20px); }
+            80%       { transform: translate(-15px, 10px); }
+        }
+        @keyframes ringPulse {
+            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+            50%       { opacity: 0.8; transform: translate(-50%, -50%) scale(1.04); }
+        }
+        @media (max-width: 768px) { .hero-orbs { width: 100%; } }
+        </style>
+        <div class="hero-content">
+            <h1>
+                <span class="line-1">Superconductivity</span>
+                <span class="line-2">Made Tangible</span>
+            </h1>
+            <div class="hero-divider"></div>
+            <div class="hero-bottom">
+                <div class="hero-desc">
+                    <p>From memorizing formulas, to truly grasping quantum phenomena that most students never see.</p>
+                    <p>An all-in-one teaching kit — YBCO disc, magnetic track, liquid nitrogen, and teaching guide — for any classroom in the world, for under $500.</p>
+                </div>
+                <a href="#about" class="cta-button"><span>Discover More</span></a>
+            </div>
+        </div>
+
+
+
 
     </section>
 
@@ -869,12 +1066,16 @@
     <footer>
         <p>&copy; 2026 Quantum Education Kit. Making Quantum Physics Accessible.</p>
         <ul class="footer-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#benefits">Benefits</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#examples">Highlights</a></li>
-            <li><a href="#references">Research</a></li>
-            <li><a href="#contact">Support</a></li>
+            <li><a href="#about">Reimagining Science Education</a></li>
+            <li><a href="#benefits">The Classroom Advantage</a></li>
+            <li><a href="#features">Built for Discovery</a></li>
+            <li><a href="#examples">Classroom Impact</a></li>
+            <li><a href="#products">The Kit</a></li>
+            <li><a href="#innovation">What's New</a></li>
+            <li><a href="#about-us">Our Mission</a></li>
+            <li><a href="#sdg">UN SDG 4</a></li>
+            <li><a href="#references">References</a></li>
+            <li><a href="#contact">Get in Touch</a></li>
         </ul>
         <p style="font-size: 0.9rem;">Supporting UN SDG 4: Quality Education for All</p>
     </footer>
@@ -917,5 +1118,99 @@
 
         videoObserver.observe(videoIframe);
     </script>
+    <!-- Dot Navigation -->
+    <div class="dot-nav" id="dotNav">
+        <a class="dot" data-section="home" href="#home" title="Home"></a>
+        <a class="dot" data-section="about" href="#about" title="Reimagining Science Education"></a>
+        <a class="dot" data-section="benefits" href="#benefits" title="The Classroom Advantage"></a>
+        <a class="dot" data-section="features" href="#features" title="Built for Discovery"></a>
+        <a class="dot" data-section="examples" href="#examples" title="Classroom Impact"></a>
+        <a class="dot" data-section="products" href="#products" title="The Kit"></a>
+        <a class="dot" data-section="innovation" href="#innovation" title="What's New"></a>
+        <a class="dot" data-section="about-us" href="#about-us" title="Our Mission"></a>
+        <a class="dot" data-section="sdg" href="#sdg" title="UN SDG 4"></a>
+        <a class="dot" data-section="references" href="#references" title="References"></a>
+        <a class="dot" data-section="contact" href="#contact" title="Get in Touch"></a>
+    </div>
+
+    <style>
+    .dot-nav {
+        position: fixed;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5000;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: center;
+    }
+    .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.4);
+        background: transparent;
+        display: block;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        outline: 8px solid transparent;
+    }
+    .dot:hover {
+        border-color: #00d9ff;
+        background: rgba(0,217,255,0.4);
+        transform: scale(1.5);
+    }
+    .dot.active {
+        background: #00d9ff;
+        border-color: #00d9ff;
+        box-shadow: 0 0 8px rgba(0,217,255,0.9), 0 0 18px rgba(0,217,255,0.4);
+    }
+    .dot::after {
+        content: attr(title);
+        position: absolute;
+        right: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(6,6,14,0.95);
+        border: 1px solid rgba(0,217,255,0.15);
+        color: rgba(255,255,255,0.85);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        padding: 4px 10px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+    .dot:hover::after { opacity: 1; }
+    @media (max-width: 768px) { .dot-nav { display: none; } }
+    </style>
+
+    <script>
+    (function() {
+        const dots = document.querySelectorAll('.dot');
+        const sections = ['home','about','benefits','features','examples','products','innovation','about-us','sdg','references','contact'];
+
+        function updateDots() {
+            const scrollY = window.scrollY + window.innerHeight / 2;
+            let current = sections[0];
+            for (const id of sections) {
+                const el = document.getElementById(id);
+                if (el && el.offsetTop <= scrollY) current = id;
+            }
+            dots.forEach(d => {
+                d.classList.toggle('active', d.dataset.section === current);
+            });
+        }
+
+        window.addEventListener('scroll', updateDots, { passive: true });
+        updateDots();
+    })();
+    </script>
+
 </body>
 </html>
